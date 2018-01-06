@@ -1,0 +1,27 @@
+{
+  "name": "mongo-news",
+  "version": "1.0.0",
+  "description": "A web app that lets users view and leave comments on the latest news. A Diney Movie themed gif app that uses the Giphy API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frendon001/mongo-news.git"
+  },
+  "author": "Fausto Rendon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frendon001/mongo-news/issues"
+  },
+  "homepage": "https://github.com/frendon001/mongo-news#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.0.0-rc2"
+  }
+}
