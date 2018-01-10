@@ -1,20 +1,70 @@
+<!-- Navigation -->
 {{> nav }}
-<div class="container">
-
-  <div class="row justify-content-sm-center vertical-margin-sm">
-    <div class="col-sm-6">
-      <p class="text-center vertical-margin-sm">Enter the name of a Burger you would like to eat. </p>
-      <form class="create-form ls">
-        <div class="form-group">
-          <textarea class="form-control" id="new-burger" name="burger" rows="2"></textarea>
+<!-- Jumbotron -->
+  <div class="jumbotron jumbotron-fluid background-image">
+    <div class="container">
+      <div class="row justify-content-center align-items-center header">
+        <div class="col-10 lign-self-center ">
+          <h1 class="display-3 text-center">Mongo News</h1>
         </div>
-        <div class="text-center">
-          <button class="btn vertical-margin-sm burger-btn" id="add-burger" type="submit">Add Burger</button>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 lign-self-center">
+          <p class="lead text-center">Tech Edition</p>
         </div>
-        
-      </form>
+      </div>
     </div>
   </div>
-
+<!-- Start News Content Section -->
+<div class="container-fluid">
+<!-- News Site Buttons -->
+  <div class="row section-spacing-lg justify-content-center text-center">
+    <div class="col-5 col-sm-3 col-lg-2">
+      <a class="btn btn-primary news-btn" data-toggle="collapse" href="#techCrunchCollapse" role="button" aria-expanded="false" aria-controls="techCrunchCollapse">Techcrunch</a>
+    </div>
+    <div class="col-5 col-sm-3 col-lg-2">
+      <a class="btn btn-primary news-btn" data-toggle="collapse" href="#hackerNewsCollapse" role="button" aria-expanded="false" aria-controls="hackerNewsCollapse">Hacker News</a>
+    </div>
+    <div class="col-5 col-sm-3 col-lg-2">
+      <a class="btn btn-primary news-btn" data-toggle="collapse" href="#hackernoonCollapse" role="button" aria-expanded="false" aria-controls="hackernoonCollapse">Hackernoon</a>
+    </div>
+    <div class="col-5 col-sm-3 col-lg-2">
+      <button class="btn btn-primary news-btn" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="techCrunchCollapse hackerNewsCollapse hackernoonCollapse">All</button>
+    </div>
+  </div>
+  <!-- Techcrunch Section -->
+  <div class="card section-spacing-lg ">
+    <div class="card-header">
+      Techcrunch
+    </div>
+    <div class="card-body multi-collapse collapse show" id="techCrunchCollapse">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <!-- Hacker News Section -->
+  <div class="card section-spacing-lg ">
+    <div class="card-header">
+      Hackers News
+    </div>
+    <div class="card-body multi-collapse collapse show" id="hackerNewsCollapse">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <!-- Hackernoon Section -->
+  <div class="card section-spacing-lg ">
+    <div class="card-header">
+      Hackernoon
+    </div>
+    <div class="card-body multi-collapse collapse show" id="hackernoonCollapse">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
 </div>
+<!-- Footer -->
 {{> footer }}
