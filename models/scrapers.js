@@ -1,16 +1,7 @@
-var scrapers  = require('../models/scrapers');
 var request = require("request");
 var cheerio = require("cheerio");
 
-exports.index = function(req, res) {
-	res.render('index');
-};
-
-exports.saved = function(req, res) {
-	res.render('saved');
-};
-
-exports.techcrunch = function(req, res) {
+exports.scrapeTechcrunch = function() {
 	// Make a request call to grab the HTML body from the site
 	request("https://techcrunch.com/", function(error, response, html) {
 
@@ -37,11 +28,12 @@ exports.techcrunch = function(req, res) {
 			}
 
 		});
-		res.json({newsItems});
+		return newsItems;
 	});
+
 };
 
-exports.hackernews = function(req, res) {
+exports.scrapeHackernews = function() {
 	request("https://news.ycombinator.com/", function(error, response, html) {
 		// Make a request call to grab the HTML body from the site
 		var $ = cheerio.load(html);
@@ -60,17 +52,19 @@ exports.hackernews = function(req, res) {
 				// Save these results in newsItems
 				newsItems.push({
 					title: title,
-					link: link
+					link: link,
+					summary: null
 				});
 			}
 
 		});
 
-		res.json({newsItems});
+		return newsItems;
 	});
 };
 
-exports.hackernoon = function(req, res) {
+
+exports.scrapeHackernoon = function() {
 	// Make a request call to grab the HTML body from the site
 	request("https://hackernoon.com/latest", function(error, response, html) {
 
@@ -84,8 +78,7 @@ exports.hackernoon = function(req, res) {
 		$("div.postArticle-content").each(function(i, element) {
 
 			var link = $(element).children().attr("href");
-			var title = $(element).find("h3.graf--title").text();
-			console.log($(element).find("h3.graf--title").html());
+			var title = $(element).children().attr("title");
 
 			// If this found element had both a title and a link
 			if (title && link) {
@@ -98,7 +91,8 @@ exports.hackernoon = function(req, res) {
 
 		});
 
-		res.json({newsItems});
+		return newsItems;
 
 	});
+
 };
