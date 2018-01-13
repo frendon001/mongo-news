@@ -5,4 +5,7 @@ var application_controller = require('../controllers/application_controller');
 
 router.get('/', application_controller.index);
 
+router.get('/saved', application_controller.saved);
+
+
 module.exports = router;
