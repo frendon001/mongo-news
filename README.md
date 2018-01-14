@@ -3,13 +3,12 @@ A web app that lets users view and leave comments on the latest news.
 A Diney Movie themed gif app that uses the Giphy API.
 
 ## Working Link
- - TBD
+ 
+[Working Link](https://obscure-dusk-73998.herokuapp.com/)
 
 ## Description on how to use the app
 
-
-
-![My Giphy App](/assets/images/MyAPP.png)
+![Mongo News](/public/assets/images/mongo_news.png)
 
 
 ## Requirements
