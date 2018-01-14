@@ -31,7 +31,7 @@
   </div>
   
   <!-- Modal -->
-<div class="modal fade" id="articleComments" tabindex="-1" role="dialog" aria-labelledby="articleCommentsTitle" aria-hidden="true">
+<div class="modal fade" id="articleNotes" tabindex="-1" role="dialog" aria-labelledby="articleNotesTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -41,16 +41,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <ul class="list-group article-comments-container">
-          <li class="list-group-item">No notes for this article yet.</li>
+        <ul class="list-group article-notes-container">
+          <li class="list-group-item note">No notes for this article yet.</li>
         </ul>
-        <textarea placeholder="New Note" rows="4" cols="55"></textarea>
+        <textarea placeholder="New Note" rows="4" cols="50"></textarea>
         <div class="modal-footer">
 
         
       </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" >Save changes</button>
+        <button type="button" class="btn btn-primary save-note" id="save-note" data-dismiss="modal">Save Note</button>
       </div>
     </div>
   </div>

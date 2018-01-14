@@ -1,6 +1,11 @@
-
 body {
-	min-width: 350px;
+    min-width: 450px;
+}
+
+textarea {
+    padding: 10px;
+    resize: none;
+    width: 100%;
 }
 
 .background-image {
@@ -12,7 +17,7 @@ body {
 }
 
 .jumbotron {
-	margin-bottom: 2rem;
+    margin-bottom: 2rem;
     background-color: #e9ecef;
     height: 400px;
     color: #fff;
@@ -20,7 +25,7 @@ body {
 }
 
 .section-spacing-lg {
-	margin: 45px 0px 45px 0px;
+    margin: 45px 0px 45px 0px;
 }
 
 .section-spacing-md {
@@ -32,15 +37,15 @@ body {
 }
 
 .header {
-	height: 200px;
+    height: 200px;
 }
 
 .news-btn {
-	margin: 10px 5px 10px 5px;
+    margin: 10px 5px 10px 5px;
 }
 
 .news-item {
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
 }
 
 .btn-save {
@@ -53,5 +58,19 @@ body {
 
 .btn:hover {
     cursor: pointer;
+}
 
+.note.list-group-item {
+    padding: 30px;
+}
+
+.article-notes-container {
+    margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        max-width: 600px;
+        margin: 30px auto;
+    }
 }

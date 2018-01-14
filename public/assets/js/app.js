@@ -1,29 +1,31 @@
 // Wait for DOM to load.
 $(function() {
 
-
-  //only run on home page
+  //**********************
+  //Home page
+  //**********************
   if ($(".card").find("#techCrunchCollapse").length) {
     scrapeAllSites();
   }
-
-    //only run on saved page
-  if ($(".card").find("#savedNews").length) {
-    getNews();
-  }
-
-
 
   $(".scrape-new").on("click", function(event) {
 
     scrapeAllSites();
   });
 
-
   $(document).on("click", ".save", saveNewsItem);
 
-  $(document).on("click", ".remove-article", removeItem);
+  //**********************
+  //Saved page
+  //**********************
+  if ($(".card").find("#savedNews").length) {
+    getNews();
+  }
 
+  $(document).on("click", ".remove-article", removeItem);
+  $(document).on("click", ".add-note", showArticleNotes);
+  $(document).on("click", "#save-note", addArticleNote);
+  $(document).on("click", ".note-delete", removeArticleNote);
 
 
 
@@ -91,9 +93,8 @@ $(function() {
     var newsItemData = {
       title: title,
       link: link,
-      comments: []
+      notes: []
     };
-    console.log(newsItemData);
 
     $.post("/NewsItem", newsItemData)
       .done(function(data) {
@@ -134,51 +135,94 @@ $(function() {
         "<a class='btn btn-danger remove-article' data-id='" + newsItem._id +
         "' >Remove</a></div>" +
         "<div class='col-3 col-sm-3 col-lg-2 align-self-center text-right btn-save'>" +
-        "<button class='btn btn-success add-comment' data-id='" + newsItem._id +
-        "'  data-toggle='modal' data-target='#articleComments'>Comment</button></div></div></div>");
+        "<button class='btn btn-success add-note' data-id='" + newsItem._id +
+        "'  data-toggle='modal' data-target='#articleNotes'>Notes</button></div></div></div>");
     });
   }
 
   function removeItem() {
-    
+
     var removedItemId = $(this).data("id");
 
     // Send the PUT request.
     $.ajax("/removeSaved", {
       type: "PUT",
-      data: {id: removedItemId}
+      data: { id: removedItemId }
     }).then(
       function() {
-        console.log("Removed Article: ", removedItemId);
         // Reload the page to get the updated list
         getNews();
 
-    });
+      });
 
   }
 
+  function showArticleNotes() {
 
-  // $("#add-burger").on("click", function(event) {
-  //   // Make sure to preventDefault on a submit event.
-  //   event.preventDefault();
-  //   var burgerDate = moment().format("YYYY-MM-DD HH:mm:ss");;
+    $("#save-note").data("id", $(this).data("id"));
 
-  //   var newBurger = {
-  //     name: $("#new-burger").val().trim(),
-  //     devoured: false,
-  //     date: burgerDate
-  //   };
+    // This function handles opending the notes modal and displaying our notes
+    // We grab the id of the article to get notes for from the panel element the delete button sits inside
+    var currentArticle_id = $(this).data("id");
+    // Grab any notes with this headline/article id
+    $.ajax("NewsItem/viewNotes/" + currentArticle_id, {
+      type: "GET",
+    }).then(
+      function(notesArr) {
+        var notesContainer = $(".article-notes-container");
 
-  //   // Send the POST request.
-  //   $.ajax("/api/burgers", {
-  //     type: "POST",
-  //     data: newBurger
-  //   }).then(
-  //     function() {
-  //       console.log("added new burger");
-  //       // Reload the page to get the updated list
-  //       location.reload();
-  //     }
-  //   );
-  // });
+        notesContainer.empty()
+
+        notesArr.forEach(function(newsItem) {
+          notesContainer.append("<li class='list-group-item note'>" +
+            "<div class='note-text'>" + newsItem + "</div>" +
+            "<button class='btn btn-danger note-delete float-right' data-dismiss='modal'>x</button>" +
+            "</li>");
+        });
+
+      });
+  }
 });
+
+
+function addArticleNote() {
+
+  var newNote = $(".modal-body textarea").val().trim();
+  $(".modal-body textarea").val("");
+
+  //if text was included then add note to saved news item
+  if (newNote) {
+
+    $.ajax("/NewsItem/addNote", {
+      type: "PUT",
+      data: {
+        note: newNote,
+        id: $("#save-note").data("id")
+      }
+    }).fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+      });;
+  }
+
+}
+
+function removeArticleNote() {
+
+  $(".modal-body textarea").val("");
+
+  var removeNoteText = $(this).prev().text();
+
+  if (removeNoteText) {
+
+    $.ajax("/NewsItem/removeNote", {
+      type: "PUT",
+      data: {
+        note: removeNoteText,
+        id: $("#save-note").data("id")
+      }
+    }).fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+      });
+  }
+
+}

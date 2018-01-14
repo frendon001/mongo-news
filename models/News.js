@@ -18,7 +18,7 @@ var newsSchema = mongoose.Schema({
         min: [1, 'Please enter an link with at least 1 character'],
         required: [true, 'Please enter an link']
     },
-    comments: {
+    notes: {
     	type: Array
     }
 });
