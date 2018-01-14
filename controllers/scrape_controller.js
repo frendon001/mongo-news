@@ -6,7 +6,6 @@ exports.techcrunch = function(req, res) {
 	// Make a request call to grab the HTML body from the site
 	request("https://techcrunch.com/", function(error, response, html) {
 
-		console.log("scraping techcrunch");
 		// Load the HTML into cheerio and save it to a variable
 		var $ = cheerio.load(html);
 
