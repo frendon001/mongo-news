@@ -50,3 +50,8 @@ body {
 .btn-scrape {
     color: #fff;
 }
+
+.btn:hover {
+    cursor: pointer;
+
+}
