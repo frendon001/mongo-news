@@ -1,6 +1,5 @@
 # mongo-news
-A web app that lets users view and leave comments on the latest news.
-A Diney Movie themed gif app that uses the Giphy API.
+A web app that pulls data article headlines from Techcrunch, Hackernews(YCombinator) and hackernoon. Articles can then be saved within the application and notes can be added to each saved article. 
 
 ## Working Link
  
@@ -13,10 +12,11 @@ A Diney Movie themed gif app that uses the Giphy API.
 
 ## Requirements
 
-- Use the Giphy API
-- Dynamically add topic buttons to the page
-- Dynamically add gifs based on topic selection
-- Include ability to pause and animate gifs
+- Scrape articles and pull titles and link into the application
+- Users should be able to leave comments on the articles displayed and revisit them later.
+	- The comments should be saved to the database as well and associated with their articles.
+	- Users should also be able to delete comments left on articles.
+	- All stored comments should be visible to every user.
 
 ## Technologies Used
 
