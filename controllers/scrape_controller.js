@@ -12,11 +12,11 @@ exports.techcrunch = function(req, res) {
 		// An empty array to save the data
 		var newsItems = [];
 
-		// Select each element with an h2 tag and a post-title class
-		$("h2.post-title").each(function(i, element) {
+		// Select each element with an a tag and a post-block__title__link class
+		$("a.post-block__title__link").each(function(i, element) {
 
-			var link = $(element).children().attr("href");
-			var title = $(element).children().text();
+			var link = $(element).attr("href");
+			var title = $(element).text();
 
 			// If this found element had both a title and a link
 			if (title && link) {
